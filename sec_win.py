@@ -70,3 +70,34 @@ def initUI(self): #tambahkan
         self.l_line = QVBoxLayout()
         self.r_line = QVBoxLayout()
         self.h_line = QHBoxLayout()
+
+#day3
+def timer1Event(self):
+    global time 
+    time = time.addSecs(-1)
+    self.text_timer.setText(time.toString("hh:mm:ss"))
+    self.text_timer.setFont(QFont("Times", 36, QFont.Bold))
+    self.text_timer.setStyleSheet("color: rgb(0,0,0)")
+    if time.toString("hh:mm:ss") == "00:00:00":
+        self.timer.stop()
+def timer2Event(self):
+    global time
+    time = time.addSecs(-1)
+    self.text_timer.setText(time.toString("hh:mm:ss")[6:8])
+    self.text_timer.setStyleSheet("color: rgb(0,0,0)")
+    self.text_timer.setFont(QFont("Times", 36, QFont.Bold)) 
+    if time.toString("hh:mm:ss") == "00:00:00":
+        self.timer.stop()
+def timer3Event(self):
+    global time
+    time = time.addSecs(-1)
+    self.text_timer.setText(time.toString("hh:mm:ss"))
+    if int(time.toString("hh:mm:ss")[6:8]) >= 45:
+        self.text_timer.setStyleSheet("color: rgb(0,255,0)")
+    elif int(time.toString("hh:mm:ss")[6:8]) <= 15:
+        self.text_timer.setSyleSheet("color: rgb(0,255,0)")
+    else:
+        self.text_timer.setStyleSheet("color: rgb(0,0,0)")
+    self.text_timer.setFont(QFont("Times", 36, QFont.Bold))
+    if time.toString("hh:mm:ss") == "00:00:00":
+        self.timer.stop()
