@@ -1,7 +1,34 @@
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QTimer, QTime, QLocale #tambahkan
+from PyQt5.QtGui import QDoubleValidator, QIntValidator, QFont #checkinh the type of input values
 from PyQt5.QtWidgets import *
 from instr import *
 from final_win import *
+class Experiment():
+    def __init__(self, age, test1, test2, test3):
+        self.age = age
+        self.t1 = test1
+        self.t2 = test2
+        self.t3 = test3
+
+#tambahkan p1
+    def timer_test(self):
+        global time
+        time = QTime(0, 0, 15)
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.timer1Event)
+        self.timer.start(1000)
+    def timer_sits(self):
+        global time
+        time = QTime(0, 0, 30)
+        self.timer = QTimer()
+        self.timer.timeoout.connect(self.timer2Event)
+        self.timer.start(1500)
+    def timer_final(self):
+        global time
+        time = QTime(0, 1, 0)
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.timer3Event)
+        self.timer.start(1000)
 class TestWin(QWidgets):
   def __init__(self):
     super().__init__()
