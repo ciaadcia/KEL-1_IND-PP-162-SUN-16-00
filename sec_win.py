@@ -1,9 +1,13 @@
-from PyQt5.QtCore import Qt, QTimer, QTime, QLocale #tambahkan
+from PyQt5.QtCore import Qt, QTimer, QTime, QLocale
 from PyQt5.QtGui import QDoubleValidator, QIntValidator, QFont # checking the types of input values
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import (
+       QApplication, QWidget,
+       QHBoxLayout, QVBoxLayout, QGridLayout,
+       QGroupBox, QRadioButton,
+       QPushButton, QLabel, QListWidget, QLineEdit)
 from instr import *
 from final_win import *
-class Experiment():#tambahkanpembuatan kelas utama
+class Experiment():
     def __init__(self, age, test1, test2, test3):
         self.age = age
         self.t1 = test1
@@ -21,7 +25,7 @@ class TestWin(QWidget):
         self.resize(win_width, win_height)
         self.move(win_x, win_y)
     def initUI(self):
-        self.btn_next = QPushButton(txt_sendresults, self) #membuat tombol
+        self.btn_next = QPushButton(txt_sendresults, self)
         self.btn_test1 = QPushButton(txt_starttest1, self)
         self.btn_test2 = QPushButton(txt_starttest2, self)
         self.btn_test3 = QPushButton(txt_starttest3, self)
@@ -62,8 +66,6 @@ class TestWin(QWidget):
         self.hide()
         self.exp = Experiment(int(self.line_age.text()), self.line_test1.text(), self.line_test2.text(), self.line_test2.text())
         self.fw = FinalWin(self.exp)
-
-    #tambahkan p1
     def timer_test(self):
         global time
         time = QTime(0, 0, 15)
@@ -75,6 +77,7 @@ class TestWin(QWidget):
         time = QTime(0, 0, 30)
         self.timer = QTimer()
         self.timer.timeout.connect(self.timer2Event)
+        #one squat in 1.5 seconds
         self.timer.start(1500)
     def timer_final(self):
         global time
@@ -82,8 +85,6 @@ class TestWin(QWidget):
         self.timer = QTimer()
         self.timer.timeout.connect(self.timer3Event)
         self.timer.start(1000)
-
-    #part2
     def timer1Event(self):
         global time
         time = time.addSecs(-1)
@@ -113,9 +114,8 @@ class TestWin(QWidget):
         self.text_timer.setFont(QFont("Times", 36, QFont.Bold))
         if time.toString("hh:mm:ss") == "00:00:00":
             self.timer.stop()
-
     def connects(self):
         self.btn_next.clicked.connect(self.next_click)
-        self.btn_test1.clicked.connect(self.timer_test) #tambahkan
-        self.btn_test2.clicked.connect(self.timer_sits) #tambahkan
-        self.btn_test3.clicked.connect(self.timer_final) #tambahkan
+        self.btn_test1.clicked.connect(self.timer_test)
+        self.btn_test2.clicked.connect(self.timer_sits)
+        self.btn_test3.clicked.connect(self.timer_final)
