@@ -1,4 +1,4 @@
-from PYQt5.QtCore import Qt, QTimer, QTime, QLocale
+from PyQt5.QtCore import Qt, QTimer, QTime, QLocale
 from PyQt5.QtGui import QDoubleValidator, QIntValidator, QFont
 from PyQt5.QtWidgets import *
 from instr import *
@@ -15,10 +15,10 @@ class MainWindow(QWidget):
     def initUI(self):
         self.btn_next = QPushButton(txt_next)
         self.hello_Text = QLabel(txt_hello)
-        self.instrucrion_Text = QLabel(txt_instruction)
+        self.instruction_Text = QLabel(txt_instruction)
         self.layout = QVBoxLayout()
         self.layout.addWidget(self.hello_Text, alignment=Qt.AlignLeft)
-        self.layout.addWidget(self.instrucrion_Text, alignment=Qt.AlignLeft)
+        self.layout.addWidget(self.instruction_Text, alignment=Qt.AlignLeft)
         self.layout.addWidget(self.btn_next, alignment=Qt.AlignCenter)
         self.setLayout(self.layout)
 
